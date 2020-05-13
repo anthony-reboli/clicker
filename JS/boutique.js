@@ -1,13 +1,35 @@
 var x=0;
 var lv=1;
+
+p=localStorage.getItem("score"); //text
+Point=parseInt(p);    //NOMBRE
+
+
+
 function oncl(){
-   x+=lv;
-   textUpdate();
+   if (localStorage.getItem("score") === null) 
+   {
+      x+=lv;
+      console.log("aie");
+      textUpdate();
+   }
+   else
+   {
+      Point+=lv;
+      textUpdate2(); 
+   }
+  
+
+   
 
     
 }
 function textUpdate(){
     document.getElementById("p").innerHTML=x+" points";
+    
+};
+function textUpdate2(){
+    document.getElementById("p").innerHTML=Point+" points";
     
 };
 function upgrade(){
@@ -56,7 +78,7 @@ break;
 
 
 
-function oncl2(){
+function oncl2(){       //a&function du click manuel via click me
    x+=lv*2;
    textUpdate();
    console.log(x);
@@ -67,26 +89,43 @@ var zenon;
 
       function bonus2()
    {
-      zenon=setInterval(oncl2, 1000);
+      zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
        debut();
 
       
    }
 
 function debut(){ 
-               var deb = setTimeout(fin, 10000); 
+               var deb = setTimeout(fin, 10000); //dans 10 seconde apelle la function fin
 
                
                
 function fin(){
    console.log("rentre");
-            clearInterval(zenon); 
+            clearInterval(zenon);  //arete la function bonus2
 
              }
 
           }
 
 
+          function save()
+          {
+            localStorage.setItem("score",x)
+          }
+
+
+ 
+          function load(){
+
+              console.log(localStorage.score);
+              textUpdate2();
+                
+              
+           }
+
+
+   
 
 
 
