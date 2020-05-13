@@ -1,7 +1,10 @@
 var x=0;
 var lv=1;
 
+
 p=localStorage.getItem("score"); //text
+
+
 Point=parseInt(p);    //NOMBRE
 
 
@@ -18,12 +21,7 @@ function oncl(){
       Point+=lv;
       textUpdate2(); 
    }
-  
-
-   
-
-    
-}
+               }
 function textUpdate(){
     document.getElementById("p").innerHTML=x+" points";
     
@@ -79,10 +77,18 @@ break;
 
 
 function oncl2(){       //a&function du click manuel via click me
-   x+=lv*2;
-   textUpdate();
-   console.log(x);
-    
+   
+   
+                if (localStorage.getItem("score") === null) 
+               {
+                   x+=lv*2;
+                   textUpdate();
+               }
+               else
+                  {
+                     Point+=lv*2;
+                   textUpdate2();
+                  }
 }
 
 var zenon;
@@ -101,28 +107,40 @@ function debut(){
                
                
 function fin(){
-   console.log("rentre");
+
             clearInterval(zenon);  //arete la function bonus2
 
              }
 
           }
 
-
+setInterval(save, 1000);
           function save()
           {
-            localStorage.setItem("score",x)
+            if (localStorage.getItem("score") === null) 
+               {
+                   x+=lv;
+
+               }
+               else
+                  {
+                    localStorage.setItem("score",Point);
+                  }
+
+            
           }
 
 
  
-          function load(){
+          window.onload =function load(){
 
               console.log(localStorage.score);
               textUpdate2();
                 
               
            }
+
+           
 
 
    
