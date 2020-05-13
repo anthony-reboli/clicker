@@ -1,35 +1,31 @@
-var x=0;
-var lv=1;
 
-
-p=localStorage.getItem("score"); //text
-
-
-Point=parseInt(p);    //NOMBRE
-
-
-
-function oncl(){
    if (localStorage.getItem("score") === null) 
    {
-      x+=lv;
-      console.log("aie");
-      textUpdate();
+      var x=0;
+      var lv=1;
    }
    else
    {
-      Point+=lv;
-      textUpdate2(); 
+      p=localStorage.getItem("score"); //text
+      x=parseInt(p); //NOMBRE
    }
-               }
-function textUpdate(){
-    document.getElementById("p").innerHTML=x+" points";
+
+  
+
+
+
+function oncl()  //click manuel par Seconde
+{ 
+      textUpdate();
+      x++;
+}
+
+function textUpdate()
+{
+    document.getElementById("p").innerHTML=x+" points"; 
     
 };
-function textUpdate2(){
-    document.getElementById("p").innerHTML=Point+" points";
-    
-};
+
 function upgrade(){
    switch (lv) {     //swith doit etre = a case
       case 1:
@@ -76,69 +72,44 @@ break;
 
 
 
-function oncl2(){       //a&function du click manuel via click me
-   
-   
-                if (localStorage.getItem("score") === null) 
-               {
-                   x+=lv*2;
-                   textUpdate();
-               }
-               else
-                  {
-                     Point+=lv*2;
-                   textUpdate2();
-                  }
+function oncl2() //a&function du click manuel via click me
+{         
+  x+=lv*2;
+  textUpdate();
 }
 
 var zenon;
 
       function bonus2()
-   {
-      zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
-       debut();
+      {
+        zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
+        debut();   
+      }
 
-      
-   }
-
-function debut(){ 
-               var deb = setTimeout(fin, 10000); //dans 10 seconde apelle la function fin
-
-               
-               
-function fin(){
-
+function debut()
+{ 
+  var deb = setTimeout(fin, 10000); //dans 10 seconde apelle la function fin
+                  
+    function fin()
+    {
             clearInterval(zenon);  //arete la function bonus2
+    }
 
-             }
+}
 
-          }
-
-setInterval(save, 1000);
+  setInterval(save, 1000);
           function save()
           {
-            if (localStorage.getItem("score") === null) 
-               {
-                   x+=lv;
-
-               }
-               else
-                  {
-                    localStorage.setItem("score",Point);
-                  }
-
-            
+                localStorage.setItem("score",x);
+                console.log("save1");
           }
 
 
- 
-          window.onload =function load(){
-
+          window.onload =function load()
+          {   
               console.log(localStorage.score);
-              textUpdate2();
-                
-              
-           }
+              textUpdate();  
+          }
 
            
 
