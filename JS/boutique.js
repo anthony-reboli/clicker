@@ -6,6 +6,7 @@
    }
    else
    {
+      var lv=1;
       p=localStorage.getItem("score"); //text
       x=parseInt(p); //NOMBRE
    }
@@ -97,7 +98,7 @@ function debut()
 
 }
 
-  setInterval(save, 1000);
+    setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
