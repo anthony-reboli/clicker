@@ -1,4 +1,4 @@
-
+ z=3;
    if (localStorage.getItem("score") === null) 
    {
       var x=Math.round(0);
@@ -29,11 +29,18 @@ function oncl()
 {
    x+=lv;
    textUpdate();
+
 }
 
 function textUpdate(){
     document.getElementById("p").innerHTML=Math.round(x)+" points";
-   
+    console.log(x);
+
+   if(x > 10){
+    
+    console.log('passe');
+    play2();
+   }
 };
 
 
@@ -113,7 +120,32 @@ function debut()
            
 
 
-   
+   // succes
+
+   function play2()
+   {
+    console.log('rentre2');
+      if (z < 4)
+      {
+        console.log(z);
+        z=z+=1;
+        console.log(z);
+        console.log('rentre2');
+        var b = document.createElement("BUTTON");
+        var c = document.createTextNode("Click me");
+        b.appendChild(c);
+        document.body.appendChild(b);
+        b.setAttribute("id", "play1");
+        b.setAttribute("onclick", "msg()");
+
+
+      }
+   }
+
+   function msg(){
+
+    document.getElementById("manette1").id = "manette2";
+   }
 
 
 
