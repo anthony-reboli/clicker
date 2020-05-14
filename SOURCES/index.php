@@ -11,8 +11,8 @@
         <div>
         <p id="p" >0 Points</p>
         <button onclick=upgrade() id="etape1" >Upgrade for 100</button>
-        <button onclick=save() id="s" >save</button>
-        <button onclick=load() id="l" >load</button>
+        <button onclick=bonus1() id="s" >bonus</button>
+        <button onclick=bonus2() id="l" >bonus2</button>
         </div>
     </body>
 </html>
