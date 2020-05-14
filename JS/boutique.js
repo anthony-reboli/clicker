@@ -105,7 +105,7 @@ function debut()
 
 }
 
-    // setInterval(save, 1000);
+     // setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
@@ -139,13 +139,44 @@ function debut()
         b.setAttribute("onclick", "msg()");
 
 
+
+
       }
    }
 
    function msg(){
-
+        document.getElementById("play1").id = "play2";
+        document.getElementById("play2").setAttribute("onclick", "msg2()");
     document.getElementById("manette1").id = "manette2";
+
+
+
    }
 
+   function msg2(){
 
+ 
+    document.getElementById("play2").id = "play3";
+  document.getElementById("play3").setAttribute("onclick", "msg3()");
+     document.getElementById("manette2").id = "manette3";
+
+   }
+
+      function msg3(){
+
+ 
+    document.getElementById("play3").id = "play4";
+  document.getElementById("play4").setAttribute("onclick", "msg4()");
+     document.getElementById("manette3").id = "manette4";
+
+   }
+
+   function msg4(){
+
+ 
+    document.getElementById("play4").id = "play5";
+  document.getElementById("play5").setAttribute("onclick", "msg5()");
+     document.getElementById("manette4").id = "manette5";
+
+   }
 

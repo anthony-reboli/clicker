@@ -6,7 +6,7 @@
     </head>
     <body>
         <div>
-        <button id="manette1" onclick=oncl()>Click me</button>
+        <button id="manette1" name="manette" onclick=oncl()>Click me</button>
         </div>
         <div>
         <p id="p" >0 Points</p>
