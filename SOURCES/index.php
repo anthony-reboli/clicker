@@ -3,7 +3,7 @@
     <head>
         <title>Clicker Game</title>
 
-        <script type="text/javascript" src="../JS/boutique.js"></script>
+        <script type="text/javascript" src="../JS/boutique.js?version:1"></script>
                 
     </head>
     <body>
@@ -12,9 +12,10 @@
         </div>
         <div>
         <p id="p" >0 Points</p>
-        <button onclick=upgrade() id="etape1" >Upgrade for 100</button>
-        <button onclick=bonus1() id="s" >upgrade for 10000</button>
-        <button onclick=bonus2() id="l" >bonus2</button>
+        <p id="multi">0 par click</p>
+        <button onclick=upgrade() id="etape1" >Upgrade for 10</button>
+        <button onclick=bonus1() id="s" >bonus pour 10</button>
+        <button onclick=bonus2() id="l" >bonus pour 100000</button>
         <!-- succes -->
         <div id="div1"></div>
         
