@@ -40,14 +40,14 @@
       lv=parseInt(Math.round(p3)); //NOMBRE
 function oncl()
 {
-    x+=lv;
+    x+=100001;
    textUpdate();
 
 }
 
   function textUpdate()
   {
-    document.getElementById("p").innerHTML=Math.round(x)+" points";
+    document.getElementById("p").innerHTML=(abbrNum(x,2))+" points";
     document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
 
 
@@ -127,19 +127,43 @@ function upgrade()
             textUpdate();
            zenon1=setInterval(oncl, 1000); //tout les temp de seconde fait oncl
            debut2();  
-        } 
+        }
+              else
+          {
+            alert("vous avez pas les points il vous faut "+prixB1+"");
+          }
       }
 
 function debut2()
 { 
   var deb = setTimeout(fin2, 600000); //dans 10min  apelle la function fin2
-                  
+           // rajouter un timer bonus
+
+        var timer2 = window.setInterval(tick2, 1000);
+
+        // fin timer                 
     function fin2()
     {
             clearInterval(zenon1);  //arete la function bonus1
     }
 
 }
+
+    var sec2 = 600;
+    function tick2()
+    {
+
+        document.getElementById('decompte').innerText = 'Il reste ' + sec2 + ' seconde(s) de bonus X1';
+         
+        if(sec2 == 0)
+        {
+            document.getElementById('decompte').innerText = 'Terminé !';
+            document.getElementById('cache').style.display = 'block';
+            window.clearInterval(timer);
+        }
+ 
+        sec2--;
+    }
 
 
 function oncl2() //a&function du click manuel via click me
@@ -159,16 +183,24 @@ var zenon;
                       x-=prixB2;
             textUpdate();
 
-          // zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
-        // debut();  
+           zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
+         debut();  
         }
+      else
+          {
+            alert("vous avez pas les points il vous faut "+prixB2+"");
+          }
  
       }
 
 function debut()
 { 
-  var deb = setTimeout(fin, 3600000); //dans 1H  apelle la function fin
-                  
+  var deb2 = setTimeout(fin, 3600000); //dans 1H  apelle la function fin
+        // rajouter un timer bonus
+
+        var timer = window.setInterval(tick, 1000);
+
+        // fin timer          
     function fin()
     {
             clearInterval(zenon);  //arete la function bonus2
@@ -176,7 +208,24 @@ function debut()
 
 }
 
-        setInterval(save, 1000);
+var sec = 3600;
+    function tick()
+    {
+
+        document.getElementById('decompte').innerText = 'Il reste ' + sec + ' seconde(s) de bonus X2';
+         
+        if(sec == 0)
+        {
+            document.getElementById('decompte').innerText = 'Terminé !';
+            document.getElementById('cache').style.display = 'block';
+            window.clearInterval(timer);
+        }
+ 
+        sec--;
+    }
+    
+
+         setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
@@ -289,5 +338,40 @@ var Consolesuivante=700000;
 
 
 }
+
+
+
+// changer les chiffres en lettre
+function abbrNum(number, decPlaces) {
+    // 2 decimal places => 100, 3 => 1000, etc
+    decPlaces = Math.pow(10,decPlaces);
+
+    // Enumerate number abbreviations
+    var abbrev = [ "k", "m", "b", "t" ];
+
+    // Go through the array backwards, so we do the largest first
+    for (var i=abbrev.length-1; i>=0; i--) {
+
+        // Convert array index to "1000", "1000000", etc
+        var size = Math.pow(10,(i+1)*3);
+
+        // If the number is bigger or equal do the abbreviation
+        if(size <= number) {
+             // Here, we multiply by decPlaces, round, and then divide by decPlaces.
+             // This gives us nice rounding to a particular decimal place.
+             number = Math.round(number*decPlaces/size)/decPlaces;
+
+             // Add the letter for the abbreviation
+             number += abbrev[i];
+
+             // We are done... stop
+             break;
+        }
+    }
+
+    return number;
+}
+
+  
 
 // partie 2
