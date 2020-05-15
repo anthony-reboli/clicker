@@ -15,7 +15,7 @@
    }
    else
    {
-      var lv;
+      var lv=1;
       p=localStorage.getItem("score"); //text
       x=parseInt(Math.round(p)); //NOMBRE
 
@@ -40,7 +40,7 @@
 
 function oncl()
 {
-    x+=150000;
+    x+=lv;
    textUpdate();
 
 }
@@ -65,7 +65,7 @@ function upgrade()
     prixinit=prixinit*lv;
 
     var prix= (prixinit * 10 / 100);
-    prix=Math.round(prix);
+    
 
          if (x>=prix)        
         {
@@ -82,8 +82,8 @@ function upgrade()
              if(lv > 10)
              {
                var newx = (lv * 3 / 100);
-               newx=Math.round(newx);
-               lv+=newx;
+               
+               Math.round(lv+=newx);
              }
 
             x-=prix;
@@ -226,7 +226,7 @@ var sec = 3600;
     }
     
 
-         // setInterval(save, 1000);
+          setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
