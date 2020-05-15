@@ -54,7 +54,12 @@ function textUpdate(){
 
 function upgrade()
    {
-         if (x>0)        
+    var prixinit=100;
+    prixinit=prixinit*lv;
+    console.log(prixinit);
+    var prix= (prixinit * 10 / 100);
+    console.log(prix);
+         if (x>prix)        
         {
 
              if(lv < 4)
@@ -72,19 +77,53 @@ function upgrade()
                lv+=newx;
              }
 
-            x-=3;
+            x-=prix;
             textUpdate();   
-            document.getElementById("etape1").innerHTML="suivant" ;
+            document.getElementById("etape1").innerHTML=Math.round(prix+=10) ;
+                    
+          var prixinitB1=10000;
+        console.log(prixinitB1);
+        var prixB1= (prixinitB1*lv);
+        console.log(prixB1);
+            document.getElementById("s").innerHTML=Math.round(prixB1) ;
+            
          }
    
    }
 
 
-   function bonus1()
-   {
-      setInterval(oncl, 1000) 
-   }
 
+      function bonus1()
+      {
+        x=100000;
+        var prixinitB1=10000;
+        console.log(prixinitB1);
+        var prixB1= (prixinitB1*lv);
+        console.log(prixB1);
+
+        if(x>prixB1)
+        {
+
+            x-=prixB1;
+            textUpdate();
+            console.log(prixB1);
+            console.log(lv);
+
+          // zenon1=setInterval(oncl, 1000); //tout les temp de seconde fait oncl
+          // debut2();  
+        } 
+      }
+
+function debut2()
+{ 
+  var deb = setTimeout(fin2, 600000); //dans 10min  apelle la function fin2
+                  
+    function fin2()
+    {
+            clearInterval(zenon1);  //arete la function bonus1
+    }
+
+}
 
 
 function oncl2() //a&function du click manuel via click me
@@ -103,7 +142,7 @@ var zenon;
 
 function debut()
 { 
-  var deb = setTimeout(fin, 10000); //dans 10 seconde apelle la function fin
+  var deb = setTimeout(fin, 3600000); //dans 1H  apelle la function fin
                   
     function fin()
     {
