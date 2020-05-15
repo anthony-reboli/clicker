@@ -24,6 +24,8 @@
 
   
 
+      p3=localStorage.getItem("lv"); //text
+      lv=parseInt(Math.round(p3)); //NOMBRE
 
    if(lv <= 2)
    {
@@ -31,16 +33,14 @@
    }
    else
    {
-    console.log(lv);
     var newx = Math.round(lv * 2 / 100);
     lv=newx; 
    }
 
-      p3=localStorage.getItem("lv"); //text
-      lv=parseInt(Math.round(p3)); //NOMBRE
+
 function oncl()
 {
-    x+=100001;
+    x+=150000;
    textUpdate();
 
 }
@@ -65,6 +65,7 @@ function upgrade()
     prixinit=prixinit*lv;
 
     var prix= (prixinit * 10 / 100);
+    prix=Math.round(prix);
 
          if (x>=prix)        
         {
@@ -81,6 +82,7 @@ function upgrade()
              if(lv > 10)
              {
                var newx = (lv * 3 / 100);
+               newx=Math.round(newx);
                lv+=newx;
              }
 
@@ -153,12 +155,11 @@ function debut2()
     function tick2()
     {
 
-        document.getElementById('decompte').innerText = 'Il reste ' + sec2 + ' seconde(s) de bonus X1';
+        document.getElementById('decompte').innerText = 'Il reste ' + convertir(sec2) + ' seconde(s) de bonus X1';
          
         if(sec2 == 0)
         {
             document.getElementById('decompte').innerText = 'Terminé !';
-            document.getElementById('cache').style.display = 'block';
             window.clearInterval(timer);
         }
  
@@ -212,7 +213,7 @@ var sec = 3600;
     function tick()
     {
 
-        document.getElementById('decompte').innerText = 'Il reste ' + sec + ' seconde(s) de bonus X2';
+        document.getElementById('decompte').innerText = 'Il reste ' + convertir(sec) + ' seconde(s) de bonus X2';
          
         if(sec == 0)
         {
@@ -225,7 +226,7 @@ var sec = 3600;
     }
     
 
-         setInterval(save, 1000);
+         // setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
@@ -372,6 +373,24 @@ function abbrNum(number, decPlaces) {
     return number;
 }
 
-  
+  function convertir(time)
+{   
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
 
 // partie 2
+
