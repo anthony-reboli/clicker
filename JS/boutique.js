@@ -47,7 +47,10 @@ function oncl()
 
   function textUpdate()
   {
-    document.getElementById("p").innerHTML=(abbrNum(x,2))+" points";
+   
+
+    pointaron=(Math.round(x));
+    document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
     document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
 
 
@@ -89,26 +92,30 @@ function upgrade()
             x-=prix;
 
 
-            textUpdate();   
-            document.getElementById("etape1").innerHTML=Math.round(prix+=10) ;
+            textUpdate(); 
+            
+            prix=Math.round(prix+=10);  
+            document.getElementById("etape1").innerHTML=abbrNum(prix,2); 
               // prix bonus1      
           var prixinitB1=10000;
 
         var prixB1= (prixinitB1*lv);
-
-            document.getElementById("s").innerHTML=Math.round(prixB1) ;
+            prixB1=Math.round(prixB1);
+            document.getElementById("s").innerHTML=abbrNum(prixB1,2); ;
             // fin prixbonus1
 
             // prix bonus 2
             var prixinitB2=100000;
 
         var prixB2= (prixinitB2*lv);
+            prixB2=Math.round(prixB2);
 
-            document.getElementById("l").innerHTML=Math.round(prixB2) ;
+            document.getElementById("l").innerHTML=abbrNum(prixB2,2);
             
          }
       else
           {
+            prix=abbrNum(prix,2);
             alert("vous avez pas les points il vous faut "+prix+"");
           }
    
@@ -132,6 +139,7 @@ function upgrade()
         }
               else
           {
+            prixB1=abbrNum(prixB1,2);
             alert("vous avez pas les points il vous faut "+prixB1+"");
           }
       }
@@ -189,6 +197,7 @@ var zenon;
         }
       else
           {
+            prixB2=abbrNum(prixB2,2);
             alert("vous avez pas les points il vous faut "+prixB2+"");
           }
  
@@ -226,7 +235,7 @@ var sec = 3600;
     }
     
 
-          setInterval(save, 1000);
+          // setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
