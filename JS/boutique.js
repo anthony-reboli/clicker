@@ -1,4 +1,4 @@
-       p2=localStorage.getItem("findujeux"); //text
+       p2=localStorage.getItem("findujeu"); //text
       fin2=parseInt(Math.round(p2)); //NOMBRE
 
 
@@ -121,26 +121,31 @@ function upgrade()
    
    }
 
-
+        // Debut du bonus 1 fonction general
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
       function bonus1()
       {
         
         var prixinitB1=10000;
-        var prixB1= (prixinitB1*lv);
+        var prixinitB1= (prixinitB1*lv);
+        var prixbonus1=(prixinitB1 * 10 / 100);
+        var prixbonus1final=prixbonus1+prixinitB1;
+        console.log(prixbonus1final);
 
-        if(x>=prixB1)
+        if(x>=prixbonus1final)
         {
-
-            x-=prixB1;
+          document.getElementById("box1").style.display = "none";
+            x-=prixbonus1final;
             textUpdate();
            zenon1=setInterval(oncl, 1000); //tout les temp de seconde fait oncl
+
            debut2();  
         }
               else
           {
-            prixB1=abbrNum(prixB1,2);
-            alert("vous avez pas les points il vous faut "+prixB1+"");
+            prixbonus1final=abbrNum(prixbonus1final,2);
+            alert("vous avez pas les points il vous faut "+prixbonus1final+"");
           }
       }
 
@@ -155,6 +160,8 @@ function debut2()
     function fin2()
     {
             clearInterval(zenon1);  //arete la function bonus1
+            document.getElementById("box1").style.display = "block";
+            window.clearInterval(timer2);
     }
 
 }
@@ -168,11 +175,18 @@ function debut2()
         if(sec2 == 0)
         {
             document.getElementById('decompte').innerText = 'Terminé !';
-            window.clearInterval(timer);
+            
         }
  
         sec2--;
     }
+
+
+     // Fin de fonction general bonus 1
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+     // debut de fonction general bonus 2
 
 
 function oncl2() //a&function du click manuel via click me
@@ -189,6 +203,7 @@ var zenon;
         var prixB2= (prixinitB2*lv);
         if(x>=prixB2)
         {
+          document.getElementById("box1").style.display = "none";
                       x-=prixB2;
             textUpdate();
 
@@ -214,6 +229,9 @@ function debut()
     function fin()
     {
             clearInterval(zenon);  //arete la function bonus2
+            window.clearInterval(timer);
+            document.getElementById("box1").style.display = "block";
+
     }
 
 }
@@ -228,14 +246,18 @@ var sec = 3600;
         {
             document.getElementById('decompte').innerText = 'Terminé !';
             document.getElementById('cache').style.display = 'block';
-            window.clearInterval(timer);
+            
         }
  
         sec--;
     }
+
+
+            // fin de fonction general bonus 2
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     
 
-          // setInterval(save, 1000);
+           setInterval(save, 1000);
           function save()
           {
                 localStorage.setItem("score",x);
@@ -264,7 +286,7 @@ var sec = 3600;
         b.setAttribute("onclick", "msg()");
       }
    }
-var Consolesuivante=700000;
+var Consolesuivante=70000;
    function msg()
    {
       if(x>=Consolesuivante)
@@ -340,7 +362,7 @@ var Consolesuivante=700000;
               if(x>=x1000x2)
               {
                   fin++;
-                  localStorage.setItem("findujeux",fin);
+                  localStorage.setItem("findujeu",fin);
                   window.location.reload();
               }
    }
