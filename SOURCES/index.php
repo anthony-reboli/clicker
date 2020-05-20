@@ -18,20 +18,21 @@
                 <p id="p" >0 Points</p>
                 <p id="multi">0 par click</p>
                 <p id="decompte" >0 </p>
+                <button onclick="reset()">RESET</button>
         <button onclick="upgrade();" id="etape1" ><img width="150" height="100" src="../assets/nextlevel.jpg"></button>
 
 	<div id="box1">
         <div class="arbox1">
             <figure class="ARfigure">
                 <button onclick="bonus1();" id="s" ><img class="arfigimg" width="150" height="100" src="../assets/bonus.jpg"></button>
-                <figcaption class="ARfigcaption">Auto clicker x1<br> 100</figcaption>
+                <figcaption id="prixbonus1"class="ARfigcaption">Auto clicker x1<br> 1000 pendant 10min</figcaption>
             </figure>
         <div>
 
         <div class="arbox1">
             <figure class="ARfigure"> 
                 <button onclick="bonus2();" id="l" ><img class="arfigimg" width="150" height="100" src="../assets/bonusextra.jpg"></button>
-                <figcaption class="ARfigcaption">Auto clicker x2<br>Pendant 5min</figcaption>
+                <figcaption id="prixbonus2" class="ARfigcaption">Auto clicker x2<br> 10000 Pendant 1H</figcaption>
             </figure>
         </div>
 

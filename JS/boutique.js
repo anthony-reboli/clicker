@@ -3,14 +3,16 @@
 
 
  if(fin2 === 0)
-{
-
+{ var prixB1;
+  console.log(prixB1);
+  var ogmentationbonus= 1;
   var z=3;
+  var lv=1;
 
  var fin=0;
    if (localStorage.getItem("score") === null) 
    {
-      var x=Math.round(0);
+      var x=1;
       var lv=1;
    }
    else
@@ -48,13 +50,40 @@ function oncl()
   function textUpdate()
   {
 
-    
     pointaron=(Math.round(x));
+    lv=(Math.round(lv));
+            // je recupere le localstorage de prixbonusfinal1 ducoup le prix de bonus 1
+            prixbonus=localStorage.getItem("prixbonusfinal1"); //text
+            prixbonusfinal1=parseInt(Math.round(prixbonus)); //NOMBRE
+            // fin de la recuperation
+
+            // je recupere le localstorage de prixbonusfinal2 ducoup le prix de bonus 2
+            prixbonus2=localStorage.getItem("prixbonusfinal2"); //text
+            prixbonusfinal2=parseInt(Math.round(prixbonus2)); //NOMBRE
+            // fin de la recuperation
+
     document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
-    document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
+
+    document.getElementById("multi").innerHTML=abbrNum(lv,2)+" par click";
+
+                if (localStorage.getItem("prixbonusfinal1") === null)
+            {
+
+                document.getElementById("prixbonus1").innerHTML="prix:<br>"+abbrNum(1000,2)+" <br>auto clicker<br>x1<br>15 minutes";
+
+                document.getElementById("prixbonus2").innerHTML="prix:<br>"+abbrNum(10000,2)+" <br>auto clicker<br>x2<br>1h";
+           }
+                else
+                    {
+                          document.getElementById("prixbonus1").innerHTML="prix:<br>"+abbrNum(prixbonusfinal1,2)+" <br>auto clicker<br>x1<br>15 minutes";
+
+    document.getElementById("prixbonus2").innerHTML="prix:<br>"+abbrNum(prixbonusfinal2,2)+" <br>auto clicker<br>x2<br>1h";
+                    }
 
 
-    if(x > 650000)
+
+
+    if(x > 10000)
     {
       play2();
     }
@@ -69,7 +98,6 @@ function upgrade()
 
     var prix= (prixinit * 10 / 100);
     
-
          if (x>=prix)        
         {
 
@@ -84,40 +112,22 @@ function upgrade()
              }
              if(lv > 10)
              {
+
                var newx = (lv * 3 / 100);
-               
-               lv=Math.round(lv+=newx);
+               lv=Math.ceil(lv+=newx);  //ceill arrondi au superieur
              }
 
             x-=prix;
 
 
             textUpdate(); 
-            
-            prix=Math.round(prix+=10);  
-            document.getElementById("etape1").innerHTML=abbrNum(prix,2); 
-              // prix bonus1      
-          var prixinitB1=10000;
-
-        var prixB1= (prixinitB1*lv);
-            prixB1=Math.round(prixB1);
-            document.getElementById("s").innerHTML=abbrNum(prixB1,2); ;
-            // fin prixbonus1
-
-            // prix bonus 2
-            var prixinitB2=100000;
-
-        var prixB2= (prixinitB2*lv);
-            prixB2=Math.round(prixB2);
-
-            document.getElementById("l").innerHTML=abbrNum(prixB2,2);
-
             save();
             
          }
       else
           {
             prix=abbrNum(prix,2);
+            save();
             alert("vous avez pas les points il vous faut "+prix+"");
           }
    
@@ -129,16 +139,21 @@ function upgrade()
       function bonus1()
       {
         
-        var prixinitB1=10000;
-        var prixinitB1= (prixinitB1*lv);
-        var prixbonus1=(prixinitB1 * 10 / 100);
-        var prixbonus1final=prixbonus1+prixinitB1;
-        console.log(prixbonus1final);
+         var prixinitB1=1000;
+         
+         ogmentationbonus = ogmentationbonus+=1;
+         
+        var prixB1= (prixinitB1*ogmentationbonus);
+        
 
-        if(x>=prixbonus1final)
+        
+        
+
+        if(x>=prixB1)
         {
           document.getElementById("box1").style.display = "none";
-            x-=prixbonus1final;
+            x-=prixB1;
+          localStorage.setItem("prixbonusfinal1",prixB1);
             textUpdate();
            zenon1=setInterval(oncl, 1000); //tout les temp de seconde fait oncl
 
@@ -146,14 +161,14 @@ function upgrade()
         }
               else
           {
-            prixbonus1final=abbrNum(prixbonus1final,2);
-            alert("vous avez pas les points il vous faut "+prixbonus1final+"");
+            prixB1=abbrNum(prixB1,2);
+            alert("vous avez pas les points il vous faut "+prixB1+"");
           }
       }
 
 function debut2()
 { 
-  var deb = setTimeout(fin2, 600000); //dans 10min  apelle la function fin2
+  var deb = setTimeout(fin2, 6000); //dans 10min  apelle la function fin2
            // rajouter un timer bonus
 
         var timer2 = window.setInterval(tick2, 1000);
@@ -201,10 +216,14 @@ var zenon;
 
       function bonus2()
       {     
-         var prixinitB2=100000;
-        var prixB2= (prixinitB2*lv);
+         var prixinitB2=10000;
+         ogmentationbonus = ogmentationbonus+=1;
+         
+        var prixB2= (prixinitB2*ogmentationbonus);
+        
         if(x>=prixB2)
         {
+          localStorage.setItem("prixbonusfinal2",prixB2);
           document.getElementById("box1").style.display = "none";
                       x-=prixB2;
             textUpdate();
@@ -261,18 +280,40 @@ var sec = 3600;
 
            
             function save()
-          {
+          {     console.log(lv);
                 localStorage.setItem("score",x);
                 localStorage.setItem("lv",lv);
+                localStorage.setItem("prixbonus",ogmentationbonus);
           }
             function textupdateload()
           {
 
             p3=localStorage.getItem("lv"); //text
             lv=parseInt(Math.round(p3)); //NOMBRE
+
             pointaron=(Math.round(x));
             document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
             document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
+
+            if (localStorage.getItem("prixbonusfinal1") === null)
+            {
+
+                            // je recupere le localstorage de prixbonusfinal1 ducoup le prix de bonus 1
+                prixbonus=localStorage.getItem("prixbonusfinal1"); //text
+                prixbonusfinal1=parseInt(Math.round(prixbonus)); //NOMBRE
+                // fin de la recuperation
+
+                // je recupere le localstorage de prixbonusfinal2 ducoup le prix de bonus 2
+                prixbonus2=localStorage.getItem("prixbonusfinal2"); //text
+                prixbonusfinal2=parseInt(Math.round(prixbonus2)); //NOMBRE
+                // fin de la recuperation
+
+
+
+                document.getElementById("prixbonus1").innerHTML="prix:<br>"+abbrNum(prixbonusfinal1,2)+" <br>auto clicker<br>x1<br>15 minutes";
+
+                document.getElementById("prixbonus2").innerHTML="prix:<br>"+abbrNum(prixbonusfinal2,2)+" <br>auto clicker<br>x2<br>1h";
+           }
           }
 
             window.onload =function load()
@@ -296,7 +337,7 @@ var sec = 3600;
         b.setAttribute("onclick", "msg()");
       }
    }
-var Consolesuivante=70000;
+var Consolesuivante=50000;
    function msg()
    {
       if(x>=Consolesuivante)
@@ -433,4 +474,13 @@ function abbrNum(number, decPlaces) {
     return ret;
 }
 
+
+function reset()
+{
+  localStorage.removeItem("lv");
+  localStorage.removeItem("score");
+  localStorage.removeItem("prixbonus");
+  localStorage.removeItem("prixbonusfinal1");
+  localStorage.removeItem("prixbonusfinal2");
+}
 // partie 2
