@@ -47,8 +47,8 @@ function oncl()
 
   function textUpdate()
   {
-   
 
+    
     pointaron=(Math.round(x));
     document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
     document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
@@ -86,7 +86,7 @@ function upgrade()
              {
                var newx = (lv * 3 / 100);
                
-               Math.round(lv+=newx);
+               lv=Math.round(lv+=newx);
              }
 
             x-=prix;
@@ -111,6 +111,8 @@ function upgrade()
             prixB2=Math.round(prixB2);
 
             document.getElementById("l").innerHTML=abbrNum(prixB2,2);
+
+            save();
             
          }
       else
@@ -257,17 +259,25 @@ var sec = 3600;
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     
 
-           setInterval(save, 1000);
-          function save()
+           
+            function save()
           {
                 localStorage.setItem("score",x);
                 localStorage.setItem("lv",lv);
           }
+            function textupdateload()
+          {
 
+            p3=localStorage.getItem("lv"); //text
+            lv=parseInt(Math.round(p3)); //NOMBRE
+            pointaron=(Math.round(x));
+            document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
+            document.getElementById("multi").innerHTML=Math.round(lv)+" par click";
+          }
 
-          window.onload =function load()
+            window.onload =function load()
           {   
-              textUpdate();  
+              textupdateload();  
           }
          
    // succes
@@ -424,4 +434,3 @@ function abbrNum(number, decPlaces) {
 }
 
 // partie 2
-
