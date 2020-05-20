@@ -62,6 +62,12 @@ function oncl()
             prixbonusfinal2=parseInt(Math.round(prixbonus2)); //NOMBRE
             // fin de la recuperation
 
+                        // je recupere le localstorage de prixupgradefinal ducoup le prix de bonus 2
+            upgrade2=localStorage.getItem("prixupgradefinal"); //text
+            prixupgradefinal=parseInt(Math.round(upgrade2)); //NOMBRE
+            // fin de la recuperation
+            document.getElementById("upgrade1").innerHTML=abbrNum(prixupgradefinal,2)+" points";
+
     document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
 
     document.getElementById("multi").innerHTML=abbrNum(lv,2)+" par click";
@@ -116,7 +122,7 @@ function upgrade()
                var newx = (lv * 3 / 100);
                lv=Math.ceil(lv+=newx);  //ceill arrondi au superieur
              }
-
+             localStorage.setItem("prixupgradefinal",prix);
             x-=prix;
 
 
@@ -137,11 +143,13 @@ function upgrade()
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
       function bonus1()
-      {
+    {
         
+
+        if(x>1000)
+        {
          var prixinitB1=1000;
-         
-         ogmentationbonus = ogmentationbonus+=1;
+        
          
         var prixB1= (prixinitB1*ogmentationbonus);
         
@@ -151,6 +159,7 @@ function upgrade()
 
         if(x>=prixB1)
         {
+          ogmentationbonus = ogmentationbonus+=1;
           document.getElementById("box1").style.display = "none";
             x-=prixB1;
           localStorage.setItem("prixbonusfinal1",prixB1);
@@ -165,6 +174,7 @@ function upgrade()
             alert("vous avez pas les points il vous faut "+prixB1+"");
           }
       }
+    }
 
 function debut2()
 { 
@@ -287,9 +297,15 @@ var sec = 3600;
           }
             function textupdateload()
           {
-
-            p3=localStorage.getItem("lv"); //text
-            lv=parseInt(Math.round(p3)); //NOMBRE
+            if (localStorage.getItem("lv") === null)
+            {
+              lv=1;
+            }
+            else
+            {
+              p3=localStorage.getItem("lv"); //text
+              lv=parseInt(Math.round(p3)); //NOMBRE
+            }
 
             pointaron=(Math.round(x));
             document.getElementById("p").innerHTML=abbrNum(pointaron,2)+" points";
@@ -482,5 +498,6 @@ function reset()
   localStorage.removeItem("prixbonus");
   localStorage.removeItem("prixbonusfinal1");
   localStorage.removeItem("prixbonusfinal2");
+  localStorage.removeItem("prixupgradefinal");
 }
 // partie 2

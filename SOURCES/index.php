@@ -19,7 +19,12 @@
                 <p id="multi">0 par click</p>
                 <p id="decompte" >0 </p>
                 <button onclick="reset()">RESET</button>
-        <button onclick="upgrade();" id="etape1" ><img width="150" height="100" src="../assets/nextlevel.jpg"></button>
+    
+
+                <figure class="ARfigure">
+                <button onclick="upgrade();" id="etape1" ><img width="150" height="100" src="../assets/nextlevel.jpg"></button>
+                <figcaption id="upgrade1"class="ARfigcaption">Augmenter les click par seconde<br>prix:<br>10</figcaption>
+            </figure>
 
 	<div id="box1">
         <div class="arbox1">
