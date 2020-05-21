@@ -6,7 +6,7 @@
   
 { 
   var prixB1;
-
+  var prixB2;
   var prix;
   var ogmentationbonus= 1;
   var z=3;
@@ -185,7 +185,7 @@ function upgrade()
 
 function debut2()
 { 
-  var deb = setTimeout(fin2, 600000); //dans 10min  apelle la function fin2
+  var deb = setTimeout(fin2, 6000); //dans 10min  apelle la function fin2
            // rajouter un timer bonus
 
         var timer2 = window.setInterval(tick2, 1000);
