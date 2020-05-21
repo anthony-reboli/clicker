@@ -185,7 +185,7 @@ function upgrade()
 
 function debut2()
 { 
-  var deb = setTimeout(fin2, 6000); //dans 10min  apelle la function fin2
+  var deb = setTimeout(fin2, 600000); //dans 10min  apelle la function fin2
            // rajouter un timer bonus
 
         var timer2 = window.setInterval(tick2, 1000);
@@ -233,32 +233,41 @@ var zenon;
 
       function bonus2()
       {     
+         if(x>10000)
+        {
          var prixinitB2=10000;
-         ogmentationbonus = ogmentationbonus+=1;
-         
-        var prixB2= (prixinitB2*ogmentationbonus);
         
+         
+         prixB2= (prixinitB2*ogmentationbonus);
+        
+
+        
+        
+
         if(x>=prixB2)
         {
-          localStorage.setItem("prixbonusfinal2",prixB2);
+          console.log(prixB2);
+          ogmentationbonus = ogmentationbonus+=1;
           document.getElementById("box1").style.display = "none";
-                      x-=prixB2;
+            x-=prixB2;
+          
             textUpdate();
+           zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl
 
-           zenon=setInterval(oncl2, 1000); //tout les temp de seconde fait oncl2
-         debut();  
+           debut();  
         }
-      else
+              else
           {
-            prixB2=abbrNum(prixB2,2);
-            alert("vous avez pas les points il vous faut "+prixB2+"");
+            textUpdate();
+            alert("vous avez pas les points il vous faut "+abbrNum(prixB2,2)+"");
           }
+      }
  
       }
 
 function debut()
 { 
-  var deb2 = setTimeout(fin, 3600000); //dans 1H  apelle la function fin
+  var deb2 = setTimeout(fin, 3000); //dans 1H  apelle la function fin 3600000
         // rajouter un timer bonus
 
         var timer = window.setInterval(tick, 1000);
@@ -304,6 +313,7 @@ var sec = 3600;
                 console.log(prixB1);
                 localStorage.setItem("prixupgradefinal",prix);
                 localStorage.setItem("prixbonusfinal1",prixB1);
+                localStorage.setItem("prixbonusfinal2",prixB2);
 
           }
             function textupdateload()
