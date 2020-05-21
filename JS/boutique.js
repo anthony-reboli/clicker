@@ -3,8 +3,8 @@
 
 
  if(fin2 === 0)
+  var prix;
 { var prixB1;
-  console.log(prixB1);
   var ogmentationbonus= 1;
   var z=3;
   var lv=1;
@@ -62,7 +62,7 @@ function oncl()
             prixbonusfinal2=parseInt(Math.round(prixbonus2)); //NOMBRE
             // fin de la recuperation
 
-                        // je recupere le localstorage de prixupgradefinal ducoup le prix de bonus 2
+                        // je recupere le localstorage de prixupgradefinal ducoup le prix de upgrade1
             upgrade2=localStorage.getItem("prixupgradefinal"); //text
             prixupgradefinal=parseInt(Math.round(upgrade2)); //NOMBRE
             // fin de la recuperation
@@ -102,7 +102,8 @@ function upgrade()
     var prixinit=100;
     prixinit=prixinit*lv;
 
-    var prix= (prixinit * 10 / 100);
+     prix= (prixinit * 10 / 100);
+
     
          if (x>=prix)        
         {
@@ -117,15 +118,14 @@ function upgrade()
                lv=lv*2;
              }
              if(lv > 10)
-             {
 
+             {
                var newx = (lv * 3 / 100);
                lv=Math.ceil(lv+=newx);  //ceill arrondi au superieur
              }
-             localStorage.setItem("prixupgradefinal",prix);
+
             x-=prix;
-
-
+            
             textUpdate(); 
             save();
             
@@ -162,7 +162,7 @@ function upgrade()
           ogmentationbonus = ogmentationbonus+=1;
           document.getElementById("box1").style.display = "none";
             x-=prixB1;
-          localStorage.setItem("prixbonusfinal1",prixB1);
+          
             textUpdate();
            zenon1=setInterval(oncl, 1000); //tout les temp de seconde fait oncl
 
@@ -290,10 +290,12 @@ var sec = 3600;
 
            
             function save()
-          {     console.log(lv);
+          {     
                 localStorage.setItem("score",x);
                 localStorage.setItem("lv",lv);
                 localStorage.setItem("prixbonus",ogmentationbonus);
+                localStorage.setItem("prixupgradefinal",prix);
+
           }
             function textupdateload()
           {
