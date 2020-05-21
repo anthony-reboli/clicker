@@ -3,8 +3,11 @@
 
 
  if(fin2 === 0)
+  
+{ 
+  var prixB1;
+
   var prix;
-{ var prixB1;
   var ogmentationbonus= 1;
   var z=3;
   var lv=1;
@@ -55,6 +58,9 @@ function oncl()
             // je recupere le localstorage de prixbonusfinal1 ducoup le prix de bonus 1
             prixbonus=localStorage.getItem("prixbonusfinal1"); //text
             prixbonusfinal1=parseInt(Math.round(prixbonus)); //NOMBRE
+            console.log(prixbonus);
+            console.log(prixbonusfinal1);
+
             // fin de la recuperation
 
             // je recupere le localstorage de prixbonusfinal2 ducoup le prix de bonus 2
@@ -151,7 +157,7 @@ function upgrade()
          var prixinitB1=1000;
         
          
-        var prixB1= (prixinitB1*ogmentationbonus);
+         prixB1= (prixinitB1*ogmentationbonus);
         
 
         
@@ -159,6 +165,7 @@ function upgrade()
 
         if(x>=prixB1)
         {
+          console.log(prixB1);
           ogmentationbonus = ogmentationbonus+=1;
           document.getElementById("box1").style.display = "none";
             x-=prixB1;
@@ -170,8 +177,8 @@ function upgrade()
         }
               else
           {
-            prixB1=abbrNum(prixB1,2);
-            alert("vous avez pas les points il vous faut "+prixB1+"");
+            textUpdate();
+            alert("vous avez pas les points il vous faut "+abbrNum(prixB1,2)+"");
           }
       }
     }
@@ -294,7 +301,9 @@ var sec = 3600;
                 localStorage.setItem("score",x);
                 localStorage.setItem("lv",lv);
                 localStorage.setItem("prixbonus",ogmentationbonus);
+                console.log(prixB1);
                 localStorage.setItem("prixupgradefinal",prix);
+                localStorage.setItem("prixbonusfinal1",prixB1);
 
           }
             function textupdateload()
