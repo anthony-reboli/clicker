@@ -494,7 +494,7 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                               {
                                 z=z+=1;
                                 var b = document.createElement("BUTTON");
-                                var c = document.createTextNode("console suivante");
+                                var c = document.createTextNode("");
                                 b.appendChild(c);
                                 document.body.appendChild(b);
                                 b.setAttribute("id", "play1");
@@ -664,18 +664,6 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
        
                      if(fin2 === 1)
                     { 
-
-                                              function reset()
-                        {
-                          localStorage.removeItem("lv");
-                          localStorage.removeItem("score");
-                          localStorage.removeItem("prixbonus");
-                          localStorage.removeItem("prixbonusfinal1");
-                          localStorage.removeItem("prixbonusfinal2");
-                          localStorage.removeItem("prixupgradefinal");
-                        }
-
-                      reset();
                       alert("Bienvenue dans la partie 2");
                       var consolesave;
                       var prixB1;
@@ -1007,7 +995,7 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                             recuperation();  
                         }
 
-                                                          function recuperation()
+                                                                                  function recuperation()
                         {
                           if (localStorage.getItem("consolesave") === null)
                           {
@@ -1025,7 +1013,7 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                             play2save();
                             msgsave();
                             
-                           
+                            
                           }
 
                             else if (localStorage.getItem("consolesave") === "3")
@@ -1047,8 +1035,22 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                             
                             
                           }
+                            else if(localStorage.getItem("consolesave") === "5")
+                          {
+                            play2save();
+                            msgsave();
+                            msg2save();
+                            msg3save();
+                            msg4save();
+                            
+                                                      }
                         }
 
+                          window.onload =function load()
+                        {   
+                            textupdateload();
+                            recuperation();  
+                        }
                        
                  // succes
 
@@ -1059,7 +1061,7 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                               {
                                 z=z+=1;
                                 var b = document.createElement("BUTTON");
-                                var c = document.createTextNode("console suivante");
+                                var c = document.createTextNode("");
                                 b.appendChild(c);
                                 document.body.appendChild(b);
                                 b.setAttribute("id", "play1");
@@ -1080,11 +1082,11 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                                    document.getElementById("manette1").id = "manette2";
                                    consolesave=2;
                               }
-                                                            else
-                              {
-                                alert("Vous n'avez pas les points il vous faut "+x+"");
-                                
-                              }
+                                    else
+                                    {
+                                      textUpdate();
+                                      alert("Vous n'avez pas les points il vous faut "+abbrNum(Consolesuivante,2)+"");
+                                    }
                             
 
                            }
@@ -1103,6 +1105,7 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                                   document.getElementById("manette2").id = "manette3";
                                   consolesave=3;
                               }
+
                               else
                               {
                                 alert("Vous n'avez pas les points il vous faut "+x10+"");
@@ -1159,13 +1162,14 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                               {
                                 z=z+=1;
                                 var b = document.createElement("BUTTON");
-                                var c = document.createTextNode("console suivante");
+                                var c = document.createTextNode("");
                                 b.appendChild(c);
                                 document.body.appendChild(b);
                                 b.setAttribute("id", "play1");
                                 b.setAttribute("onclick", "msg()");
                                 
                                  
+
                               }
                            }
                         var Consolesuivante=50000;
@@ -1231,120 +1235,31 @@ fin2=parseInt(Math.round(p2)); //NOMBRE
                                         document.getElementById("play5").setAttribute("onclick", "recomencer()");
                                         document.getElementById("manette4").id = "manette5";
                                         
-                                        
+                                       
                                       
                           }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-
-                                 
-                           // succes
-
-                           function play2()
-                           {
-
-                              if (z < 4)
-                              {
-                                z=z+=1;
-                                var b = document.createElement("BUTTON");
-                                var c = document.createTextNode("console suivante");
-                                b.appendChild(c);
-                                document.body.appendChild(b);
-                                b.setAttribute("id", "play1");
-                                b.setAttribute("onclick", "msg()");
-                              }
-                           }
-                        var Consolesuivante=150000;
-                           function msg()
-                           {
-                              if(x>=Consolesuivante)
-                              {
-                                  x-=Consolesuivante;
-                                  textUpdate(); 
-                                   document.getElementById("play1").id = "play2";
-                                   document.getElementById("play2").setAttribute("onclick", "msg2()");
-                                   document.getElementById("manette1").id = "manette2";
-                                   consolesave=2;
-                              }
-                           }
-
-                           function msg2()
-                           {  
-                              var x100=Consolesuivante*100;
-                              if(x>=x100)
-                              {
-
-                                  x-=x100;
-                                  textUpdate(); 
-                         
-                                  document.getElementById("play2").id = "play3";
-                                  document.getElementById("play3").setAttribute("onclick", "msg3()");
-                                  document.getElementById("manette2").id = "manette3";
-                                  consolesave=3;
-                              }
-                              else
-                              {
-                                alert("Vous n'avez pas les points il vous faut "+x100+"");
-                              }
-
-                           }
-
-                              function msg3()
-                                  {
-                                      var x1000=Consolesuivante*1000;
-                                      if(x>=x1000)
-                                      {
-
-                                      x-=x1000;
-                                      textUpdate(); 
-                         
-                                      document.getElementById("play3").id = "play4";
-                                      document.getElementById("play4").setAttribute("onclick", "msg4()");
-                                      document.getElementById("manette3").id = "manette4";
-                                      consolesave=4;
-                                }
-                                else
-                                  {
-                                    alert("Vous n'avez pas les points il vous faut "+x1000+"");
-                                  }
-                           }
-
-                           function msg4(){
-                                        var x10000=Consolesuivante*10000;
-                                      if(x>=x10000)
-                                      {
-
-                                        x-=x10000;
-                                        textUpdate(); 
-                         
-                                        document.getElementById("play4").id = "play5";
-                                        document.getElementById("play5").setAttribute("onclick", "recomencer()");
-                                        document.getElementById("manette4").id = "manette5";
-                                        consolesave=5;
-                                      }
-                                      else
-                                          {
-                                          alert("Vous n'avez pas les points il vous faut "+x10000+"");
-                                          }
-                           }
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
                            function recomencer()
                            {
-                               var x1000x2=Consolesuivante*1000*2;
-                                if(x>=x1000x2)
-                                  {
-                                    fin++;
-                                    localStorage.setItem("findujeu",fin);
-                                    window.location.reload();
-                                  }
-                                                                else
-                              {
-                                alert("Vous n'avez pas les points il vous faut "+x1000x2+"");
-                                
-                              }
+                                        var x1000x2=Consolesuivante*1000*2;
+                                      if(x>=x1000x2)
+                                      {
+                                          fin++;
+                                          reset();
+                                          localStorage.setItem("findujeu",fin);
+                                          window.location.reload();
+
+                                      }
+                                      else
+                                          {
+                                          alert("Vous n'avez pas les points il vous faut "+x1000x2+"");
+                                          }   
                            }
-                        }
+
+                           }
+                        
                         // changer les chiffres en lettre
                         function abbrNum(number, decPlaces) {
                                   // 2 decimal places => 100, 3 => 1000, etc
